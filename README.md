@@ -2,7 +2,7 @@
 
 Landing page for Solvira, a proposed human-centered burn-care and patient-support initiative.
 
-**Live:** https://solvira-tech.vercel.app
+**Live:** https://solvira-tech.vercel.app · **Repo:** https://github.com/real-GBOY/solvira-tech
 
 ## Stack
 
