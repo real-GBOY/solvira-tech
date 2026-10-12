@@ -1,0 +1,102 @@
+@import "tailwindcss";
+/* Lenis owns wheel smoothing; these are its required helper rules (native smooth scroll must be off while it runs). */
+@import "lenis/dist/lenis.css";
+
+/*
+ * Solvira design tokens - the single source for color, type and shape (approved design: "Solvira Landing").
+ * Ivory and cream keep the page domestic and calm; forest teal carries trust and every primary action.
+ * Clay is a small mark of human warmth (dots, rules, accent text), never a surface.
+ */
+@theme {
+  --color-ivory: #f8f6f0;
+  --color-cream: #f0ede5;
+  --color-parchment: #e9e5da;
+  --color-teal: #173d3b;
+  --color-teal-deep: #0f2c2a;
+  --color-teal-soft: #1d4744;
+  --color-night: #0e2423;
+  --color-sage: #a8b9a5;
+  --color-sage-tint: #e3e9df;
+  --color-clay: #c98268;
+  --color-clay-ink: #9e5639;
+  --color-clay-light: #e2b4a2;
+  --color-charcoal: #252825;
+  --color-body: #3c413c;
+  --color-muted: #5c625b;
+  --color-rule: #d9d4c8;
+  --color-rule-soft: #e2ded3;
+  --color-rule-strong: #d2ccbe;
+  --color-outline: #b9b4a6;
+  --color-teal-rule: #3a5d5a;
+  --color-teal-line: #4f6e6b;
+  --color-mist: #b9cac5;
+  --color-mist-soft: #d3dcd8;
+  --color-footer: #1d2321;
+
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-sans: "Hanken Grotesk", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --radius-card: 4px;
+
+  --breakpoint-nav: 1100px;
+}
+
+@layer base {
+  body {
+    margin: 0;
+    background: var(--color-ivory);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a {
+    color: var(--color-teal);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  a:hover {
+    color: var(--color-clay-ink);
+  }
+  button {
+    font: inherit;
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-clay);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--color-sage);
+    color: var(--color-teal);
+  }
+  input::placeholder {
+    color: #8fa7a2;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility placeholder-stripes {
+  background: repeating-linear-gradient(135deg, #ede9df 0 10px, #e7e2d6 10px 20px);
+}
+
+@utility gutter {
+  padding-inline: clamp(20px, 5vw, 64px);
+}
+
+@utility section-y {
+  padding-block: clamp(88px, 11vw, 160px);
+}
+
+@utility h-display {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: var(--color-teal);
+}
