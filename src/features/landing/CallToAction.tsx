@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/Button";
 import { Reveal } from "@/components/Reveal";
+import { SITE } from "@/config/site";
 import { scrollToSection } from "@/lib/scroll";
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
@@ -11,10 +12,30 @@ function InterestForm() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
 
-  const submit = (e: FormEvent) => {
+  const [sending, setSending] = useState(false);
+
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!EMAIL_RE.test(email)) setError("Please enter a valid email address.");
-    else setSent(true);
+    const value = email.trim();
+    if (!EMAIL_RE.test(value) || value.length > 254) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    setSending(true);
+    try {
+      const res = await fetch("/api/interest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // `company` is a honeypot: real visitors never see or fill it.
+        body: JSON.stringify({ email: value, company: new FormData(e.currentTarget).get("company") ?? "" }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setSent(true);
+    } catch {
+      setError(`We couldn't register that just now. Please try again, or email ${SITE.email}.`);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -38,15 +59,20 @@ function InterestForm() {
                 autoComplete="email"
                 className="min-h-[52px] min-w-0 basis-[200px] flex-1 rounded-full border border-teal-line bg-teal-deep px-[18px] font-[inherit] text-base text-ivory outline-offset-2"
               />
-              <Button type="submit" variant="clay" className="px-[22px] text-[15px]">
-                Register interest
+              <input type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+              <Button type="submit" variant="clay" className="px-[22px] text-[15px]" disabled={sending}>
+                {sending ? "Sending…" : "Register interest"}
               </Button>
             </div>
-            <span role="status" className="min-h-[18px] text-[13px] text-clay-light">
+            <span role="alert" className="min-h-[18px] text-[13px] text-clay-light">
               {error}
             </span>
             <span className="text-[13px] leading-[1.55] text-[#a9c0ba]">
-              Occasional updates on Solvira Care's development. No marketing lists; unsubscribe any time.
+              Occasional updates on Solvira Care's development. No marketing lists; unsubscribe any time. See our{" "}
+              <a href="/privacy" className="text-mist-soft">
+                privacy policy
+              </a>
+              .
             </span>
           </motion.div>
         ) : (

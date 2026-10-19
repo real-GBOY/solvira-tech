@@ -10,16 +10,25 @@ import { Hero } from "@/features/landing/Hero";
 import { Insight } from "@/features/landing/Insight";
 import { Journey } from "@/features/landing/Journey";
 import { Trust } from "@/features/landing/Trust";
+import { findLegalDoc } from "@/features/legal/content";
+import { LegalPage } from "@/features/legal/LegalPage";
+import { NotFound } from "@/features/legal/NotFound";
 import { startSmoothScroll } from "@/lib/scroll";
 
 export function App() {
+  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+  if (path === "/") return <Landing />;
+  const doc = findLegalDoc(path);
+  return doc ? <LegalPage doc={doc} /> : <NotFound />;
+}
+
+function Landing() {
   const [dir, setDir] = useState<Direction>("ltr");
 
   useEffect(() => startSmoothScroll(), []);
 
   useEffect(() => {
     document.documentElement.dir = dir;
-    document.documentElement.lang = dir === "rtl" ? "ar" : "en";
   }, [dir]);
 
   return (

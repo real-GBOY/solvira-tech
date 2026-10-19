@@ -30,8 +30,20 @@ src/
 ```
 
 Design tokens live once in `src/styles/index.css`. Photo slots render their art-direction brief until a
-`src` is passed to `ImageSlot`. The interest form validates the address but does not send it anywhere yet.
+`src` is passed to `ImageSlot` (empty slots show a decorative brand panel; the brief stays in code only).
+Legal pages (`/privacy`, `/terms`, `/medical-disclaimer`) live in `src/features/legal/content.ts`; unknown paths show a noindex 404.
 
 ## Deploy
 
 Vercel builds from `main` with `vercel.json` (SPA rewrite, security headers, immutable asset caching).
+
+### Interest form
+
+`POST /api/interest` (`api/interest.ts`) emails each submission via Resend. Set `RESEND_API_KEY` (and optionally
+`INTEREST_TO_EMAIL`, `INTEREST_FROM_EMAIL`; see `.env.example`) in Vercel. The sender domain must be verified in Resend.
+Without the key the endpoint returns 503 and the form shows an email fallback.
+
+### Share card and icons
+
+`public/og-image.png` (1200x630) is the link-preview image; favicons and app icons are in `public/`. After changing
+the card, refresh the cache in the Facebook Sharing Debugger and LinkedIn Post Inspector.
