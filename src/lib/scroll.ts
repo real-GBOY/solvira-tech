@@ -19,6 +19,12 @@ export function startSmoothScroll(): () => void {
   };
 }
 
+/** Jump to the top instantly, for page changes. */
+export function scrollToTop(): void {
+  lenis?.scrollTo(0, { immediate: true });
+  window.scrollTo(0, 0);
+}
+
 /** Scroll to a section id, offset for the sticky header; eased via Lenis, native smooth, or instant per motion preference. */
 export function scrollToSection(id: string): void {
   const el = document.getElementById(id);

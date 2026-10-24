@@ -1,3 +1,4 @@
+import { Arrow } from "@/components/Arrow";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ImageSlot } from "@/components/ImageSlot";
@@ -64,7 +65,8 @@ function Faq() {
   );
 }
 
-export function Education() {
+export function Education({ h1 }: { h1?: boolean }) {
+  const Heading = h1 ? "h1" : "h2";
   const [filter, setFilter] = useState<ResourceFilter>("All");
 
   const resources = useMemo(
@@ -75,13 +77,13 @@ export function Education() {
 
   return (
     <section id="education" aria-labelledby="edu-title" className="gutter section-y mx-auto max-w-[1320px]">
-      <SectionLabel n="04" className="mb-7">
+      <SectionLabel className="mb-7">
         EDUCATION &amp; PREVENTION
       </SectionLabel>
       <Reveal className="flex flex-wrap items-end justify-between gap-x-16 gap-y-6">
-        <h2 id="edu-title" className="h-display max-w-[12em] text-[clamp(44px,5.4vw,80px)] leading-none">
+        <Heading id="edu-title" className="h-display max-w-[12em] text-[clamp(44px,5.4vw,80px)] leading-none">
           Better information starts with better access.
-        </h2>
+        </Heading>
         <p className="max-w-[26em] text-[17px] leading-[1.6] text-body">
           Practical, plain-language guides for everyday safety, first aid and caregiving, planned in Arabic and English.
         </p>
@@ -134,7 +136,7 @@ export function Education() {
                   className="group flex flex-wrap items-stretch gap-[clamp(24px,3vw,40px)] text-charcoal no-underline hover:text-clay-ink"
                 >
                   <div className="placeholder-stripes relative aspect-[4/3] min-w-0 basis-[300px] flex-[1.1] overflow-hidden rounded-card">
-                    <ImageSlot placeholder="Feature image — a calm, everyday home detail related to the guide (kitchen counter, bath time, a kettle). No injury shown." />
+                    <ImageSlot src="/products/pharma-range.jpeg" alt="Solvira Pharma burn care range" placeholder="" />
                   </div>
                   <div className="flex min-w-0 basis-[260px] flex-1 flex-col justify-between gap-[18px] py-1">
                     <div className="flex flex-col gap-[18px]">
@@ -150,7 +152,7 @@ export function Education() {
                       <span>
                         {featured.type.toUpperCase()} · {featured.time}
                       </span>
-                      <span className="font-medium text-teal">Read the guide →</span>
+                      <span className="font-medium text-teal">Read the guide <Arrow className="ms-1" /></span>
                     </span>
                   </div>
                 </a>
@@ -173,7 +175,7 @@ export function Education() {
                             {r.cat.toUpperCase()} · {r.type.toUpperCase()}
                           </span>
                         </span>
-                        <span className="whitespace-nowrap text-[13px] text-muted">{r.time} →</span>
+                        <span className="whitespace-nowrap text-[13px] text-muted">{r.time} <Arrow className="ms-1" /></span>
                       </a>
                     </li>
                   ))}

@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
+import { Link } from "@/lib/router";
 
 type Variant = "primary" | "outline" | "light" | "ghost-light" | "clay";
 
@@ -17,19 +18,35 @@ interface ButtonProps extends ComponentProps<typeof motion.button> {
   compact?: boolean;
 }
 
+const buttonClasses = (variant: Variant, compact: boolean | undefined, className: string | undefined) =>
+  cn(
+    "inline-flex items-center justify-center gap-3 rounded-full font-medium no-underline transition-colors duration-200",
+    compact ? "px-5 py-[11px] text-sm" : "min-h-[52px] px-[26px] text-base",
+    VARIANTS[variant],
+    className,
+  );
+
 export function Button({ variant = "primary", compact, className, children, ...rest }: ButtonProps) {
   return (
-    <motion.button
-      whileTap={{ scale: 0.97 }}
-      className={cn(
-        "inline-flex items-center justify-center gap-3 rounded-full font-medium transition-colors duration-200",
-        compact ? "px-5 py-[11px] text-sm" : "min-h-[52px] px-[26px] text-base",
-        VARIANTS[variant],
-        className,
-      )}
-      {...rest}
-    >
+    <motion.button whileTap={{ scale: 0.97 }} className={buttonClasses(variant, compact, className)} {...rest}>
       {children}
     </motion.button>
+  );
+}
+
+interface ButtonLinkProps {
+  to: string;
+  variant?: Variant;
+  compact?: boolean;
+  className?: string;
+  children: React.ReactNode;
+}
+
+/** Button-styled in-app link. Use for navigation; use Button for actions. */
+export function ButtonLink({ to, variant = "primary", compact, className, children }: ButtonLinkProps) {
+  return (
+    <Link to={to} className={buttonClasses(variant, compact, className)}>
+      {children}
+    </Link>
   );
 }

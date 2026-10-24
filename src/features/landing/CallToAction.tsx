@@ -1,9 +1,10 @@
+import { Arrow } from "@/components/Arrow";
 import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Button } from "@/components/Button";
+import { Button, ButtonLink } from "@/components/Button";
 import { Reveal } from "@/components/Reveal";
+import { CARE, CONTACT } from "@/config/pages";
 import { SITE } from "@/config/site";
-import { scrollToSection } from "@/lib/scroll";
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
 
@@ -113,12 +114,12 @@ export function CallToAction() {
             healthcare experiences.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Button variant="light" onClick={() => scrollToSection("care")}>
-              Discover the Vision →
-            </Button>
-            <Button variant="ghost-light" onClick={() => scrollToSection("contact")}>
+            <ButtonLink to={CARE.path} variant="light">
+              Discover the Vision <Arrow />
+            </ButtonLink>
+            <ButtonLink to={CONTACT.path} variant="ghost-light">
               Contact Solvira
-            </Button>
+            </ButtonLink>
           </div>
         </Reveal>
         <InterestForm />

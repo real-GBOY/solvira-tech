@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://solvirapharma.com/</loc><lastmod>2026-10-19</lastmod><priority>1.0</priority></url>
-  <url><loc>https://solvirapharma.com/privacy</loc><lastmod>2026-10-19</lastmod><priority>0.3</priority></url>
-  <url><loc>https://solvirapharma.com/terms</loc><lastmod>2026-10-19</lastmod><priority>0.3</priority></url>
-  <url><loc>https://solvirapharma.com/medical-disclaimer</loc><lastmod>2026-10-19</lastmod><priority>0.3</priority></url>
+  <url><loc>https://solvirapharma.com/</loc><lastmod>2026-10-23</lastmod><priority>1.0</priority></url>
+  <url><loc>https://solvirapharma.com/about</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://solvirapharma.com/services</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://solvirapharma.com/solvira-care</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://solvirapharma.com/learn</loc><lastmod>2026-10-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://solvirapharma.com/team</loc><lastmod>2026-10-23</lastmod><priority>0.6</priority></url>
+  <url><loc>https://solvirapharma.com/careers</loc><lastmod>2026-10-23</lastmod><priority>0.6</priority></url>
+  <url><loc>https://solvirapharma.com/contact</loc><lastmod>2026-10-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://solvirapharma.com/privacy</loc><lastmod>2026-10-23</lastmod><priority>0.3</priority></url>
+  <url><loc>https://solvirapharma.com/terms</loc><lastmod>2026-10-23</lastmod><priority>0.3</priority></url>
+  <url><loc>https://solvirapharma.com/medical-disclaimer</loc><lastmod>2026-10-23</lastmod><priority>0.3</priority></url>
 </urlset>

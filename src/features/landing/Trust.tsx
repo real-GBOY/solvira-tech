@@ -7,7 +7,7 @@ export function Trust() {
     <section id="approach" aria-labelledby="trust-title" className="gutter section-y mx-auto max-w-[1320px]">
       <div className="flex flex-wrap gap-[clamp(40px,6vw,96px)]">
         <Reveal className="flex min-w-0 basis-[380px] flex-1 flex-col gap-7">
-          <SectionLabel n="06">TRUST, PRIVACY &amp; RESPONSIBLE CARE</SectionLabel>
+          <SectionLabel>TRUST, PRIVACY &amp; RESPONSIBLE CARE</SectionLabel>
           <h2 id="trust-title" className="h-display text-[clamp(40px,4.6vw,68px)] leading-[1.04]">
             Care should feel clear. <em className="italic">Your choices should stay yours.</em>
           </h2>

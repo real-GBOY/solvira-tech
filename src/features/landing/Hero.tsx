@@ -1,7 +1,8 @@
+import { Arrow } from "@/components/Arrow";
 import { motion } from "framer-motion";
-import { Button } from "@/components/Button";
+import { ButtonLink } from "@/components/Button";
 import { ImageSlot } from "@/components/ImageSlot";
-import { scrollToSection } from "@/lib/scroll";
+import { CARE, LEARN } from "@/config/pages";
 import { PRINCIPLES } from "./content";
 
 const rise = (delay: number) => ({
@@ -42,12 +43,12 @@ export function Hero() {
             need them — helping patients and caregivers navigate the journey with greater confidence.
           </motion.p>
           <motion.div {...rise(0.3)} className="flex flex-wrap gap-3">
-            <Button onClick={() => scrollToSection("care")}>
-              Discover Solvira Care <span aria-hidden="true">→</span>
-            </Button>
-            <Button variant="outline" onClick={() => scrollToSection("education")}>
+            <ButtonLink to={CARE.path}>
+              Discover Solvira Care <Arrow />
+            </ButtonLink>
+            <ButtonLink to={LEARN.path} variant="outline">
               Explore Burn Care Resources
-            </Button>
+            </ButtonLink>
           </motion.div>
           <motion.p {...rise(0.4)} className="flex max-w-[34em] items-baseline gap-2.5 text-[13px] leading-normal text-muted">
             <span className="whitespace-nowrap rounded-full border border-outline px-[9px] py-[3px] font-mono text-[11px] tracking-[0.1em]">
@@ -59,7 +60,7 @@ export function Hero() {
 
         <motion.div {...rise(0.15)} className="relative min-w-0 basis-[420px] flex-1">
           <div className="placeholder-stripes relative h-[clamp(440px,52vw,700px)] overflow-hidden rounded-card">
-            <ImageSlot placeholder="Hero photo — parent and child on a sofa by a window, soft daylight, calm and close. No visible injury." />
+            <ImageSlot src="/products/duo.jpg" alt="Solvira Pharma burn care ointment and spray" placeholder="" />
           </div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

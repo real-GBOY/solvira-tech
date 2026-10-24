@@ -96,6 +96,8 @@ export interface JourneyStage {
   body: string;
   items: string[];
   placeholder: string;
+  image: string;
+  imageAlt: string;
   showCard?: boolean;
 }
 
@@ -112,6 +114,8 @@ export const JOURNEY_STAGES: JourneyStage[] = [
       "Direction toward appropriate professional care",
     ],
     placeholder: "Instructional still life — kitchen sink, running water, folded clean towel. Daylight. No injury shown.",
+    image: "/products/spray-patch.jpg",
+    imageAlt: "Solvira burn care spray and patch",
   },
   {
     key: "B",
@@ -126,6 +130,8 @@ export const JOURNEY_STAGES: JourneyStage[] = [
       "Pharmacist follow-up, where available",
     ],
     placeholder: "Parent and child reading on a sofa, late-afternoon light, relaxed and close.",
+    image: "/products/duo.jpg",
+    imageAlt: "Solvira burn care ointment and spray",
     showCard: true,
   },
   {
@@ -140,6 +146,8 @@ export const JOURNEY_STAGES: JourneyStage[] = [
       "Personal reflection and storytelling",
     ],
     placeholder: "Young adult stepping out of a front door with a bag, morning light, an ordinary street.",
+    image: "/products/patch.jpg",
+    imageAlt: "Solvira burn care patch",
   },
 ];
 
@@ -195,4 +203,58 @@ export const TRUST_POINTS = [
   { title: "Clinically Reviewed Information", body: "Health education and first-aid content should be reviewed by qualified professionals." },
   { title: "Privacy by Design", body: "Patients should understand what information is collected, why it is needed, and how they can control optional sharing." },
   { title: "Appropriate Professional Care", body: "Digital resources should help patients find appropriate care, not replace medical assessment." },
+];
+
+import { Pill, Smartphone, Stethoscope, type LucideIcon } from "lucide-react";
+
+export interface Service {
+  Icon: LucideIcon;
+  kind: string;
+  status: string;
+  title: string;
+  body: string;
+  /** Path under /public once a real photo exists, e.g. "/products/care-app.jpg". */
+  image?: string;
+  alt: string;
+  placeholder: string;
+  items?: string[];
+  /** Renders a built-in UI mockup instead of a photo. */
+  mockup?: "app";
+  link?: { to: string; label: string };
+}
+
+export const PHARMA: Service = {
+  Icon: Pill,
+  kind: "MEDICINES",
+  status: "IN DEVELOPMENT",
+  title: "Solvira Pharma",
+  body: "Our first products for burn care, made with the patient in mind.",
+  image: "/products/pharma-range.jpeg",
+  alt: "Solvira Pharma burn care range: ointment, spray and patch",
+  placeholder: "Solvira product packs arranged on a clean surface, soft daylight.",
+  items: ["Burn Care Ointment", "Burn Care Spray", "Burn Care Patch"],
+};
+
+export const SERVICES: Service[] = [
+  {
+    Icon: Smartphone,
+    kind: "APP",
+    status: "IN DEVELOPMENT",
+    title: "Solvira Care",
+    body: "Clear guidance and support on your phone, in Arabic and English.",
+    mockup: "app",
+    alt: "Solvira Care app on a phone",
+    placeholder: "Solvira Care app screens on a phone, held in hand, soft daylight.",
+    link: { to: "/solvira-care", label: "See how it works" },
+  },
+  {
+    Icon: Stethoscope,
+    kind: "DEVICES",
+    status: "EXPLORING",
+    title: "Care devices",
+    body: "Simple tools that make care at home easier.",
+    image: "/products/patch.jpg",
+    alt: "Solvira burn care patch",
+    placeholder: "A care device on a neutral surface.",
+  },
 ];

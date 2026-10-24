@@ -4,7 +4,8 @@ import { cn } from "@/lib/cn";
 import { CarePhone } from "./CarePhone";
 import { CARE_STEPS } from "./content";
 
-export function Care() {
+export function Care({ h1 }: { h1?: boolean }) {
+  const Heading = h1 ? "h1" : "h2";
   const [step, setStep] = useState(0);
 
   return (
@@ -12,7 +13,6 @@ export function Care() {
       <div className="gutter section-y mx-auto max-w-[1320px]">
         <div className="mb-[clamp(40px,5vw,64px)] flex flex-wrap items-center justify-between gap-6">
           <div className="flex items-center gap-3 font-mono text-xs tracking-[0.14em] text-mist">
-            <span>02</span>
             <span className="h-px w-7 bg-current" />
             <span>INTRODUCING SOLVIRA CARE</span>
           </div>
@@ -24,12 +24,12 @@ export function Care() {
         {/* Stacked (phone): heading, intro, phone mock, steps, note. From lg: steps column left, sticky phone right. */}
         <div className="grid items-start gap-x-[clamp(48px,6vw,96px)] gap-y-8 lg:grid-cols-[1.2fr_1fr]">
           <Reveal className="max-lg:contents lg:flex lg:min-w-0 lg:flex-col lg:gap-7">
-            <h2
+            <Heading
               id="care-title"
               className="font-serif text-[clamp(44px,5.4vw,80px)] font-light leading-none tracking-[-0.02em] text-ivory text-balance"
             >
               Support, one step <em className="italic text-clay-light">at a time.</em>
-            </h2>
+            </Heading>
             <p className="max-w-[32em] text-[clamp(17px,1.35vw,19px)] leading-[1.65] text-mist-soft">
               A connected experience designed to make useful information and supportive resources easier to access
               throughout the burn-care journey.

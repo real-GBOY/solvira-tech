@@ -23,7 +23,7 @@ npm run build
 src/
   app/                 App shell (direction toggle, smooth scroll, motion config)
   components/          Shared UI: Button, Logo, SectionLabel, ImageSlot, Reveal
-  features/landing/    One file per page section, plus content.ts (all copy and data)
+  features/landing/    One file per page section; content.ts and company.ts hold the copy and data
   config/              Navigation links
   lib/                 Scroll helper, class-name helper
   styles/index.css     Design tokens (@theme) and base styles

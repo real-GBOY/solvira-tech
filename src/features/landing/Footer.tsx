@@ -1,8 +1,8 @@
 import { Logo } from "@/components/Logo";
-import { NAV_LINKS } from "@/config/nav";
+import { CONTACT, LEARN, NAV_PAGES } from "@/config/pages";
 import { CURRENT_YEAR, SITE } from "@/config/site";
 import { LEGAL_DOCS } from "@/features/legal/content";
-import { scrollToSection } from "@/lib/scroll";
+import { Link } from "@/lib/router";
 
 export type Direction = "ltr" | "rtl";
 
@@ -12,13 +12,8 @@ const columnTitle = "font-mono text-[11px] tracking-[0.12em] text-[#8e9893]";
 const footLink = "text-[15px] text-[#e4e7e3] no-underline hover:text-clay-light";
 
 export function Footer({ dir, onToggleDir }: { dir: Direction; onToggleDir: () => void }) {
-  const go = (id: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    scrollToSection(id);
-  };
-
   return (
-    <footer id="contact" className="bg-footer text-[#c9cfcb]">
+    <footer className="bg-footer text-[#c9cfcb]">
       <div className="gutter mx-auto max-w-[1320px] pb-10 pt-[clamp(64px,8vw,104px)]">
         <div className="flex flex-wrap gap-x-[clamp(32px,5vw,80px)] gap-y-12">
           <div className="flex min-w-0 basis-[300px] flex-[1.4] flex-col gap-5">
@@ -31,19 +26,19 @@ export function Footer({ dir, onToggleDir }: { dir: Direction; onToggleDir: () =
 
           <div className="flex basis-[150px] flex-1 flex-col gap-3">
             <span className={columnTitle}>SOLVIRA</span>
-            {NAV_LINKS.map((l) => (
-              <a key={l.id} href={`#${l.id}`} onClick={go(l.id)} className={footLink}>
-                {l.label}
-              </a>
+            {NAV_PAGES.map((p) => (
+              <Link key={p.path} to={p.path} className={footLink}>
+                {p.label}
+              </Link>
             ))}
           </div>
 
           <div className="flex basis-[170px] flex-1 flex-col gap-3">
             <span className={columnTitle}>RESOURCES</span>
             {RESOURCE_LINKS.map((r) => (
-              <a key={r} href="#education" onClick={go("education")} className={footLink}>
+              <Link key={r} to={LEARN.path} className={footLink}>
                 {r}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -52,6 +47,9 @@ export function Footer({ dir, onToggleDir }: { dir: Direction; onToggleDir: () =
             <a href={`mailto:${SITE.email}`} className={footLink}>
               {SITE.email}
             </a>
+            <Link to={CONTACT.path} className={footLink}>
+              All contact options
+            </Link>
           </div>
         </div>
 

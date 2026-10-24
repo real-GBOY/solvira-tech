@@ -7,7 +7,7 @@ export function Connected() {
   return (
     <section aria-labelledby="connect-title" className="bg-cream">
       <div className="gutter section-y mx-auto max-w-[1320px]">
-        <SectionLabel n="05" className="mb-7">
+        <SectionLabel className="mb-7">
           A BETTER CONNECTED EXPERIENCE
         </SectionLabel>
         <h2 id="connect-title" className="h-display max-w-[13em] text-[clamp(44px,5.4vw,80px)] leading-none">

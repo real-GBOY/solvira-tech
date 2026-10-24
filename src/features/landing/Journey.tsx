@@ -1,3 +1,4 @@
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ImageSlot } from "@/components/ImageSlot";
@@ -13,7 +14,7 @@ export function Journey() {
 
   return (
     <section aria-labelledby="journey-title" className="gutter section-y mx-auto max-w-[1320px]">
-      <SectionLabel n="03" className="mb-7">
+      <SectionLabel className="mb-7">
         THE PATIENT JOURNEY
       </SectionLabel>
       <Reveal className="mb-[clamp(40px,5vw,72px)] flex flex-wrap items-end justify-between gap-x-16 gap-y-6">
@@ -61,7 +62,7 @@ export function Journey() {
           className="mt-[clamp(32px,4vw,56px)] flex flex-wrap items-stretch gap-[clamp(40px,6vw,96px)]"
         >
           <div className="placeholder-stripes relative min-h-[clamp(360px,40vw,560px)] min-w-0 basis-[440px] flex-[1.25] overflow-hidden rounded-card">
-            <ImageSlot placeholder={s.placeholder} />
+            <ImageSlot src={s.image} alt={s.imageAlt} placeholder={s.placeholder} />
             {s.showCard && (
               <div className="absolute end-5 top-5 flex w-[min(250px,calc(100%-40px))] flex-col gap-2.5 rounded-card bg-ivory p-4 shadow-[0_18px_40px_-20px_rgba(23,61,59,0.4)]">
                 <span className="font-mono text-[10px] tracking-[0.1em] text-muted">TONIGHT · OPTIONAL</span>
@@ -88,8 +89,8 @@ export function Journey() {
             </ul>
             <div className="flex gap-2.5">
               {[
-                { label: "Previous stage", glyph: "←", next: (stage + count - 1) % count },
-                { label: "Next stage", glyph: "→", next: (stage + 1) % count },
+                { label: "Previous stage", Icon: ArrowLeft, next: (stage + count - 1) % count },
+                { label: "Next stage", Icon: ArrowRight, next: (stage + 1) % count },
               ].map((b) => (
                 <button
                   key={b.label}
@@ -97,7 +98,7 @@ export function Journey() {
                   onClick={() => setStage(b.next)}
                   className="size-11 rounded-full border border-teal bg-transparent text-teal transition-colors hover:bg-teal hover:text-ivory rtl:-scale-x-100"
                 >
-                  {b.glyph}
+                  <b.Icon aria-hidden="true" size={18} className="mx-auto rtl:-scale-x-100" />
                 </button>
               ))}
             </div>
